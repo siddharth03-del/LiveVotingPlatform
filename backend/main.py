@@ -2,6 +2,7 @@ from flask import Flask, request,jsonify
 from flask_socketio import SocketIO,send, emit
 from flask_cors import CORS
 from dotenv import load_dotenv
+import os
 app = Flask(__name__)
 load_dotenv()
 app.config['SECKRET_KEY'] = 'Siddharthsingh'
@@ -9,7 +10,8 @@ CORS(app)
 socketio = SocketIO(app, cors_allowed_origins="*")
 
 if __name__ == '__main__':
-    socketio.run(app, host='0.0.0.0', port=5173)
+    port = int(os.environ.get("PORT", 5173))
+    socketio.run(app, host='0.0.0.0', port=port)
 from Routes.api.api import api_route
 from Service.vote import CasteVoteService
 
