@@ -3,6 +3,9 @@ from flask_socketio import SocketIO,send, emit
 from flask_cors import CORS
 from dotenv import load_dotenv
 import os
+import eventlet
+eventlet.monkey_patch()
+
 app = Flask(__name__)
 load_dotenv()
 app.config['SECKRET_KEY'] = 'Siddharthsingh'
