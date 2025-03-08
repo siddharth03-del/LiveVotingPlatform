@@ -29,6 +29,7 @@ function PollOption({
   useEffect(()=>{
     console.log("changing progress")
     let a = votes[index]/totalVotes;
+    console.log(option[index], votes[index])
     setProgress(Math.round(a*100))
   },[totalVotes, updateProgress])
   function HandleCheckedChange() {
