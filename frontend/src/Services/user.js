@@ -1,6 +1,4 @@
 import axios_instance from "@/axios/axios";
-import UserContext from "@/Context/userContext";
-import { useContext } from "react";
 
 export async function fetchUserId(){
     try{
@@ -14,7 +12,18 @@ export async function fetchUserId(){
         }
         return uuid;
     }catch(error){
-        console.log(error)
+        console.log(error);
         return null;
+    }
+}
+
+export async function PostFeedback(object){
+    try{
+        let body = object;
+        const response = await axios_instance.post('/user/feedback', body);
+        return response.data.message;
+    }catch(error){
+        console.log(error);
+        throw new Error(error);
     }
 }

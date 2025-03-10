@@ -19,34 +19,59 @@ function PollOption({
   const [progress, setProgress] = useState(0);
   const { socketObject } = useContext(SocketContext);
   const { userId } = useContext(UserContext);
-  useEffect(() => {
-    if (checkValue) {
-      votes[index]--;
-      setTotalVotes(totalVotes - 1);
-    }
-    setCheckValue(choosedOption == option[index]);
-  }, [choosedOption]);
+  // useEffect(() => {
+  //   if (checkValue) {
+  //     votes[index]--;
+  //     setTotalVotes(totalVotes - 1);
+  //   }
+  //   setCheckValue(choosedOption == option[index]);
+  // }, [choosedOption]);
   useEffect(()=>{
     console.log("changing progress")
     let a = votes[index]/totalVotes;
     console.log(option[index], votes[index])
     setProgress(Math.round(a*100))
-  },[totalVotes, updateProgress])
-  function HandleCheckedChange() {
-    if (checkValue) {
-      setCheckValue(false);
+  },[totalVotes,updateProgress])
+  useEffect(()=>{
+    console.log("changing progress")
+    let a = votes[index]/totalVotes;
+    console.log(option[index], votes[index])
+    setProgress(Math.round(a*100))
+  },[updateProgress])
+  // function HandleCheckedChange() {
+  //   if (checkValue) {
+  //     setCheckValue(false);
+  //     setChoosedOption(null);
+  //     votes[index]--;
+  //     setTotalVotes(totalVotes - 1);
+  //     RemoveVote(pollId, option[index], socketObject, userId);
+  //   } else {
+  //     setChoosedOption(option[index]);
+  //     setTimeout(() => {
+  //       setCheckValue(true);
+  //     }, 500);
+  //     votes[index]++;
+  //     setTotalVotes(totalVotes + 1);
+  //     Castvote(pollId, option[index], socketObject, userId);
+  //   }
+  // }
+
+  function HandleCheckedChange(){
+    if (choosedOption == option[index]){
       setChoosedOption(null);
       votes[index]--;
       setTotalVotes(totalVotes - 1);
       RemoveVote(pollId, option[index], socketObject, userId);
-    } else {
+      setCheckValue(false);
+    }else{
+      if(choosedOption){
+        let lastIndex = option.findIndex((element)=> element == choosedOption);
+        votes[lastIndex]--;
+      }
       setChoosedOption(option[index]);
-      setTimeout(() => {
-        setCheckValue(true);
-      }, 500);
       votes[index]++;
       setTotalVotes(totalVotes + 1);
-      Castvote(pollId, option[index], socketObject, userId);
+      Castvote(pollId, option[index], socketObject, userId)
     }
   }
   return (
@@ -56,7 +81,7 @@ function PollOption({
           onCheckedChange={() => {
             HandleCheckedChange();
           }}
-          checked={checkValue}
+          checked={choosedOption == option[index]}
         />
       </div>
       <div className="flex flex-col w-[80%] px-2">

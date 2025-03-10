@@ -13,11 +13,12 @@ function PollStrucutre({ poll }) {
   const [Poll, setPoll] = useState(poll);
   const [totalVotes, setTotalVotes] = useState(0);
   const [choosedOption, setChoosedOption] = useState(null);
-  const [updateProgress, setProgressUpdate] = useState(false);
+  const [updateProgress, setProgressUpdate] = useState(0);
   useEffect(() => {
     socketObject?.on("poll_update", (data) => {
       console.log("Poll update", data);
-      if (data.message.Poll._id == poll._id) {
+      console.log(data.message.Poll._id)
+      if (data?.message?.Poll?._id == poll._id) {
         setPoll(data.message.Poll);
         const sum = data.message.Poll.votes.reduce(
           (accumlator, currentValue) => accumlator + currentValue
@@ -25,7 +26,7 @@ function PollStrucutre({ poll }) {
         console.log("changed total votes");
         console.log(sum);
         setTotalVotes(sum);
-        setProgressUpdate(!updateProgress);
+        setProgressUpdate((prev)=> prev + 1);
       }
     });
   }, [socketObject]);
@@ -47,6 +48,7 @@ function PollStrucutre({ poll }) {
       (accumlator, currentValue) => accumlator + currentValue
     );
     setTotalVotes(sum);
+    setProgressUpdate((prev)=> prev + 1);
   }, []);
   return (
     <div className="flex flex-row">
@@ -83,7 +85,7 @@ function PollStrucutre({ poll }) {
       <div className="flex flex-col justify-center ml-1">
         <div className="w-fit h-fit">
           <DialogCloseButton
-            link={`http://192.168.22.111:3000/service/poll/${poll._id}`}
+            link={`https://live-voting-platform.vercel.app//service/poll/${poll._id}`}
           />
         </div>
       </div>

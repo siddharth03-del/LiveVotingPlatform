@@ -51,6 +51,20 @@ const data = {
         }
       ],
     },
+    {
+      title : "About",
+      url: "#",
+      items: [
+        {
+          title : "About us",
+          url: "/service/aboutus"
+        },
+        {
+          title : "Contact us",
+          url: "/service/contactus"
+        },
+      ]
+    }
   ],
 }
 
