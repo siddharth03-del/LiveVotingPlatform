@@ -7,6 +7,7 @@ from flask_cors import CORS
 from dotenv import load_dotenv
 import os
 
+
 app = Flask(__name__)
 load_dotenv()
 app.config['SECRET_KEY'] = 'Siddharthsingh'
@@ -50,4 +51,5 @@ def removeVoteHandler(json):
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
-    socketio.run(app, host='0.0.0.0', port=port)
+    socketio.run(app, host='0.0.0.0', port=port, debug=True)
+    
