@@ -33,14 +33,16 @@ export default function ClientComponent() {
         SubmitCreatePoll(e);
       }}
     >
-      <div className="w-10/12 h-fit px-2 py-2 border-2 border-gray-300 rounded-2xl">
-        Create a Poll
+      <div className="w-10/12 h-fit px-2 py-2 rounded-2xl"> 
+      <h1 className="text-xl md:text-3xl font-bold text-blue-600">Create a New Poll</h1>
+      <p className="text-gray-600 md:text-lg mt-1 mb-8">Engage your audience by creating a public or private poll.</p>
         <div className="grid w-full max-w-sm items-center gap-1.5 mt-2">
-          <Label htmlFor="name">Name</Label>
+          
+          <Label htmlFor="name" className="font-bold">Poll Question</Label>
           <Input
             type="name"
             id="name"
-            placeholder="Name of the Poll"
+            placeholder="Enter the poll question"
             value={name}
             onChange={(e) => {
               setName(e.target.value);
@@ -49,7 +51,7 @@ export default function ClientComponent() {
           />
         </div>
         <div className="grid w-full max-w-sm items-center gap-1.5 mt-2">
-          <Label htmlFor="description">Description</Label>
+          <Label htmlFor="description" className="font-bold">Description</Label>
           <Input
             type="description"
             id="description"
@@ -62,7 +64,7 @@ export default function ClientComponent() {
           />
         </div>
         <div className="grid w-full max-w-sm items-center gap-1.5 mt-2">
-          <Label htmlFor="author-name">Author Name</Label>
+          <Label htmlFor="author-name" className="font-bold">Author Name</Label>
           <Input
             type="name"
             id="author-name"
@@ -75,7 +77,7 @@ export default function ClientComponent() {
           />
         </div>
         <div className="grid w-full max-w-sm items-center gap-1.5 mt-2">
-          <Label htmlFor="email">Email</Label>
+          <Label htmlFor="email" className="font-bold">Email</Label>
           <Input
             type="email"
             id="email"
@@ -90,10 +92,10 @@ export default function ClientComponent() {
         <p className="text-xs text-red-500 font-bold mt-2">Public Polls are listed on the homepage for anyone to vote</p>
         <div className="flex items-center space-x-2 mt-2">
           <Switch id="public-poll" checked={publicPoll} onCheckedChange={()=>{setPublicPoll(!publicPoll)}}/>
-          <Label htmlFor="public-poll">Public Poll</Label>
+          <Label htmlFor="public-poll" className="font-bold">Public Poll</Label>
         </div>
         <div className="grid w-full max-w-sm items-center gap-1.5 mt-2">
-          <Label type="color" id="email" placeholder="white">
+          <Label type="color" id="email" placeholder="white" className="font-bold">
             Color
           </Label>
           <Input
@@ -119,7 +121,7 @@ export default function ClientComponent() {
               Create Poll
             </Button>
           ) : (
-            <Button type="submit">Create Poll</Button>
+            <Button type="submit" className="bg-blue-600 w-full md:w-1/2 hover:bg-blue-700">Create Poll</Button>
           )}
         </div>
       </div>

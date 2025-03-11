@@ -17,6 +17,8 @@ export default function ClientComponent(){
     },[])
     return(
         <div className="w-[90%]">
+            <h1 className="text-2xl font-bold  text-blue-600">Public Polls</h1>
+            <p className="text-gray-600 md:text-lg mt-1 mb-8">Vote, share your opinion, and engage with the community.</p>
             <Poll/>
         </div>
     )

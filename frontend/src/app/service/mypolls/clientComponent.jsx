@@ -16,6 +16,8 @@ export default function ClientComponent() {
   if (isError) return <div>Error loading data...</div>
   return (
     <div>
+      <h1 className="text-xl md:text-2xl font-bold text-blue-600">My Polls</h1>
+      <p className="text-gray-600 md:text-lg mt-1 mb-8">Manage all your created polls in one place.</p>
       {polls?.map((poll, index) => {
         return (
           <div key={[poll, index]} className="mt-5">
