@@ -36,10 +36,12 @@ def FetchAll():
 def FetchOne(name):
     print(name)
     try:
-        poll = polls_collection.find_one(
-        {"$text": {"$search": name}},
-        {"score": {"$meta": "textScore"}}
-        )
+        results = polls_collection.find(
+    {"$text": {"$search": name}},
+    {"score": {"$meta": "textScore"}}
+).sort([("score", {"$meta": "textScore"})]).limit(1)
+        for i in results:
+            poll = i
         poll["_id"] = str(poll["_id"])
         poll["createdAt"] = poll["createdAt"].strftime("%Y-%m-%d %H:%M:%S")
         print(poll, "this is poll")
