@@ -6,6 +6,9 @@ import PollStrucutre from "@/components/atoms/pollStructure";
 import { Share2Icon } from "lucide-react";
 import { DialogCloseButton } from "@/components/molecules/ShareDialog";
 import SkeletonCard from "@/components/molecules/Skeleton";
+import { useContext } from "react";
+import MenuContext from "@/Context/menuContext";
+import { useEffect } from "react";
 export default function ClientComponent() {
   const {data : polls, isLoading, isError} = useQuery({
     queryKey : ["mypolls"],
@@ -14,6 +17,11 @@ export default function ClientComponent() {
     retryDelay : 1000*10
   })
   if (isError) return <div>Error loading data...</div>
+  const {setLevel1, setLevel2} = useContext(MenuContext);
+  useEffect(()=>{
+    setLevel1("Poll");
+    setLevel2("My Polls");
+  },[])
   return (
     <div>
       <h1 className="text-xl md:text-2xl font-bold text-blue-600">My Polls</h1>
@@ -29,7 +37,7 @@ export default function ClientComponent() {
       })}
       {
         polls?.length == 0 && <div>
-          <h1 className="text-center text-3xl mt-5">No Polls Found</h1>
+          <p className="text-center text-3xl mt-5">No Polls Found</p>
         </div>
       }
       {

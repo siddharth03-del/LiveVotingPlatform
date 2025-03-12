@@ -8,7 +8,7 @@ import createPollContext from "@/Context/createPollContext";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
-
+import MenuContext from "@/Context/menuContext";
 export default function ClientComponent() {
   const {
     color,
@@ -26,6 +26,11 @@ export default function ClientComponent() {
     publicPoll,
     setPublicPoll
   } = useContext(createPollContext);
+  const {setLevel1, setLevel2} = useContext(MenuContext);
+  useEffect(()=>{
+    setLevel1("Poll");
+    setLevel2("Create a poll");
+  },[])
   return (
     <>
     <form
@@ -109,9 +114,9 @@ export default function ClientComponent() {
           />
         </div>
         <div>
-          <h1 className="text-sm font-bold text-red-500 mt-2">
+          <p className="text-sm font-bold text-red-500 mt-2">
             As you type more options will appear
-          </h1>
+          </p>
           <CreatePollOptions />
         </div>
         <div className="mt-2">

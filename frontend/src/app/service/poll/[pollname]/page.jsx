@@ -6,17 +6,17 @@ import React, { useEffect, useState } from 'react';
 import { useSearchParams } from "next/navigation";
 import PollStrucutre from "@/components/atoms/pollStructure";
 export default function Page({params}) {
-    const [pollid, setPollId] = useState(null);
+    const [pollName, setPollName] = useState(null);
     useEffect(()=>{
         async function fetchParams(){
-            const {pollId} = await params
-            setPollId(pollId);
+            const {pollname} = await params
+            setPollName(pollname);
         }
         fetchParams()
     },[params])
     const { data: poll,error, isLoading, isError } = useQuery({
-        queryKey: [pollid], // Use slug directly
-        queryFn: () => FetchOnePoll(pollid)
+        queryKey: [pollName], // Use slug directly
+        queryFn: () => FetchOnePoll(pollName)
     });
 
     if (isLoading) return <div>Loading...</div>;

@@ -3,6 +3,9 @@
 import { PostFeedback } from "@/Services/user";
 import { useState } from "react";
 import { toast } from "sonner";
+import { useContext } from "react";
+import MenuContext from "@/Context/menuContext";
+import { useEffect } from "react";
 export default function ClientComponent() {
   
   const [name, setName] = useState('');
@@ -27,6 +30,11 @@ export default function ClientComponent() {
     }
 
   }
+  const {setLevel1, setLevel2} = useContext(MenuContext);
+  useEffect(()=>{
+    setLevel1("About");
+    setLevel2("Contact Us");
+  },[])
   return (
     <div>
       <section className="bg-blue-600 text-white py-16 text-center">

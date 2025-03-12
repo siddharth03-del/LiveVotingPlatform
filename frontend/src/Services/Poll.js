@@ -47,10 +47,10 @@ export async function FetchMyPolls(){
     }
 }
 
-export async function FetchOnePoll(pollId){
+export async function FetchOnePoll(pollname){
     try{
-        console.log(pollId);
-        const params = {"poll_id" : pollId};
+        console.log(pollname);
+        const params = {"poll_name" : pollname};
         const response = await axios_instance.get('/poll/getone', {params});
         return response.data.data;
     }catch(error){

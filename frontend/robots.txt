@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /service/poll
+Disallow : /service/mypolls
+Disallow : /service/myvotes
+Disallow : /service
+Allow: /
+
+Sitemap: https://yourwebsite.com/sitemap.xml

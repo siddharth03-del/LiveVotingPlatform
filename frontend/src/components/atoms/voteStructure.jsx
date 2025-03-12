@@ -8,9 +8,9 @@ function VoteStructure({vote}){
                 {vote.poll_name}
             </div>
             <div className="flex flex-row">
-                <h1 className="text-md px-2">
+                <h2 className="text-md px-2">
                     {vote.vote}
-                </h1>
+                </h2>
                 <CheckCircle2Icon color="green"/>
             </div>
         </div>

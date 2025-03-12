@@ -56,9 +56,9 @@ function PollStrucutre({ poll }) {
         className="w-full border-gray-300 border-2 h-fit flex-col rounded-2xl px-3 py-3"
         style={{ backgroundColor: `${poll.colour}` }}
       >
-        <h1 className="fond-bold text-2xl font-mono">
+        <h2 className="fond-bold text-2xl font-mono">
           {Poll.name.toUpperCase()}
-        </h1>
+        </h2>
         <p className="text-sm">{Poll.description}</p>
         {Poll.options?.map((options, index) => {
           return (
@@ -78,14 +78,14 @@ function PollStrucutre({ poll }) {
           );
         })}
         <div className="flex flex-row justify-between">
-          <h1 className="text-gray-600 text-xs">{`~${poll.author_name}`}</h1>
-          <h1 className="text-gray-500 text-xs">{poll.createdAt}</h1>
+          <p className="text-gray-600 text-xs">{`~${poll.author_name}`}</p>
+          <p className="text-gray-500 text-xs">{poll.createdAt}</p>
         </div>
       </div>
       <div className="flex flex-col justify-center ml-1">
         <div className="w-fit h-fit">
           <DialogCloseButton
-            link={`https://live-voting-platform.vercel.app//service/poll/${poll._id}`}
+            link={`https://live-voting-platform.vercel.app//service/poll/${poll.name}`}
           />
         </div>
       </div>

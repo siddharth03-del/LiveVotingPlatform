@@ -16,7 +16,6 @@ import {
   SidebarMenuItem,
   SidebarRail,
 } from "@/components/ui/sidebar"
-import MenuContext from "@/Context/menuContext"
 import Link from "next/link"
 
 // This is sample data.
@@ -25,7 +24,7 @@ const data = {
   navMain: [
     {
       title: "Polls",
-      url: "#",
+      url: "",
       items: [
         {
           title: "Public Polls",
@@ -43,7 +42,7 @@ const data = {
     },
     {
       title: "Votes",
-      url: "#",
+      url: "",
       items: [
         {
           title: "My votes",
@@ -53,7 +52,7 @@ const data = {
     },
     {
       title : "About",
-      url: "#",
+      url: "",
       items: [
         {
           title : "About us",
@@ -71,7 +70,7 @@ const data = {
 export function AppSidebar({
   ...props
 }) {
-  const {setLevel1, setLevel2} = useContext(MenuContext)
+  
   return (
     (<Sidebar {...props}>
       <SidebarHeader>
@@ -81,17 +80,13 @@ export function AppSidebar({
       <SidebarContent>
         {/* We create a SidebarGroup for each parent. */}
         {data.navMain.map((item) => (
-          <SidebarGroup key={item.title} onClick={()=>{
-            setLevel1(item.title)
-          }}>
+          <SidebarGroup key={item.title}>
             <SidebarGroupLabel>{item.title}</SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu>
                 {item.items.map((item) => (
                   <SidebarMenuItem key={item.title}>
-                    <SidebarMenuButton asChild isActive={item.isActive} onClick={()=>{
-                      setLevel2(item.title)
-                  }}>
+                    <SidebarMenuButton asChild isActive={item.isActive}>
                     <Link href={item.url}>
                       {item.title}
                     </Link>

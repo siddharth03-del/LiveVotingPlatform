@@ -5,6 +5,7 @@ import { fetchUserId } from "@/Services/user"
 import dynamic from "next/dynamic"
 import { useEffect } from "react"
 import { useContext } from "react"
+import MenuContext from "@/Context/menuContext";
 const Poll = dynamic(()=> import("@/components/organisms/polls"),{ssr : false})
 export default function ClientComponent(){
     const {setUserId} = useContext(UserContext)
@@ -15,6 +16,11 @@ export default function ClientComponent(){
         }
         FetchUserIdHelper()
     },[])
+    const { setLevel1, setLevel2 } = useContext(MenuContext);
+  useEffect(() => {
+    setLevel1("Poll");
+    setLevel2("Public Polls");
+  }, []);
     return(
         <div className="w-[90%]">
             <h1 className="text-2xl font-bold  text-blue-600">Public Polls</h1>
