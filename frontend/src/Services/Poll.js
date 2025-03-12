@@ -13,6 +13,10 @@ export async function FetchPolls(){
 
 export async function FetchVoteInfo(pollId, userId){
     try{
+        if(!userId){
+            userId = localStorage.getItem('userId');
+        }
+        console.log(userId)
         const params = {"user_id" : userId, "poll_id" : pollId};
         console.log(params);
         const response = await axios_instance.get('/poll/voteinfo', {params});
