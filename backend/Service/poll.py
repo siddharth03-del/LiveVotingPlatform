@@ -37,9 +37,9 @@ def FetchAllPollService():
         print(e)
         return e
     
-def FetchOnePollService(pollId):
+def FetchOnePollService(pollname):
     try:
-        poll = FetchOne(pollId)
+        poll = FetchOne(pollname)
         return poll
     except Exception as e:
         print(e, "error in service")

@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify
 from Service.poll import CreatePollService, UpdatePollService, FetchAllPollService, FetchOnePollService, FetchVoteInfoService, FetchMyPollsService
 import json
-
+from urllib.parse import unquote
 poll = Blueprint('poll', __name__)
 @poll.route('/create', methods=['POST'])
 def CreatePollController():
@@ -58,8 +58,10 @@ def FetchAllPollController():
 @poll.route("/getone", methods=["GET"])
 def FetchOnePollController():
     try:
-        pollId = request.args.get("poll_id")
-        response = FetchOnePollService(pollId)
+        pollname = request.args.get("poll_name")
+        pollname = unquote(pollname)
+        print(pollname)
+        response = FetchOnePollService(pollname)
         return jsonify({
             "success" : True,
             "data" : response

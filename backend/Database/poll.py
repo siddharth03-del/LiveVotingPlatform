@@ -33,11 +33,11 @@ def FetchAll():
         print(e)
         return e
 
-def FetchOne(pollId):
-    print(pollId)
+def FetchOne(name):
+    print(name)
     try:
         poll = polls_collection.find_one({
-            "_id" : ObjectId(pollId)
+            "name" : name
         })
         poll["_id"] = str(poll["_id"])
         poll["createdAt"] = poll["createdAt"].strftime("%Y-%m-%d %H:%M:%S")
