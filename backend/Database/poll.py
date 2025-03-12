@@ -36,9 +36,10 @@ def FetchAll():
 def FetchOne(name):
     print(name)
     try:
-        poll = polls_collection.find_one({
-            "name" : name
-        })
+        poll = polls_collection.find_one(
+        {"$text": {"$search": name}},
+        {"score": {"$meta": "textScore"}}
+        )
         poll["_id"] = str(poll["_id"])
         poll["createdAt"] = poll["createdAt"].strftime("%Y-%m-%d %H:%M:%S")
         print(poll, "this is poll")
