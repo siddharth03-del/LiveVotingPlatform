@@ -1,32 +1,41 @@
-"use client";
+import ClientComponent from "./clientComponent";
 
-import { FetchOnePoll } from "@/Services/Poll";
-import { useQuery } from "@tanstack/react-query";
-import React, { useEffect, useState } from 'react';
-import { useSearchParams } from "next/navigation";
-import PollStrucutre from "@/components/atoms/pollStructure";
-export default function Page({params}) {
-    const [pollName, setPollName] = useState(null);
-    useEffect(()=>{
-        async function fetchParams(){
-            const {pollname} = await params
-            setPollName(pollname);
-        }
-        fetchParams()
-    },[params])
-    const { data: poll,error, isLoading, isError } = useQuery({
-        queryKey: [pollName], // Use slug directly
-        queryFn: () => FetchOnePoll(pollName)
-    });
+export async function generateMetadata({ params }) {
+    if (!params || !params.pollname) return {}; // Handle missing params safely
 
-    if (isLoading) return <div>Loading...</div>;
-    if (isError) return <div>Error loading data</div>;
+    const pollname = decodeURIComponent(params.pollname.replace(/-/g, " "));
+    return {
+        title: `${pollname} - Vote & Discuss | CrazyPolls`,
+        description: `Cast your vote on '${pollname}' and see what others think! Join CrazyPolls today.`,
+    };
+}
 
-    return (
-        <div className="w-[90%]">
-            {
-                (!isError && !isLoading) && <PollStrucutre poll={poll}/>
+export default async function Page({ params }) {
+    if (!params || !params.pollname) {
+        return <h1>Poll Not Found</h1>; // Prevent error if params are missing
+    }
+
+    try {
+        const urlparams = new URLSearchParams({
+            "poll_name" : params.pollname
+        })
+        const res = await fetch(`http://192.168.100.111:5000/api/poll/getone?${urlparams}`,{
+            method: 'GET',
+            headers : {
+                'Content-Type' : 'application/json'
             }
-        </div>
-    );
+        });
+
+        if (!res.ok) throw new Error("Failed to fetch poll"); // Handle errors properly
+        const poll = await res.json();
+        return (
+            <>
+                <h1 className="text-xl text-blue-600 font-bold md:text-2xl">{`Vote & Discuss - ${poll?.data?.name}` || "Poll Not Found"}</h1>
+                <ClientComponent poll={poll.data}/>
+            </>
+        );
+    } catch (error) {
+        console.log(error);
+        return <h1>Error: Unable to fetch poll</h1>;
+    }
 }

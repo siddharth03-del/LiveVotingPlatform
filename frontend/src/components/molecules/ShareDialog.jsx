@@ -23,7 +23,6 @@ import { Label } from "@/components/ui/label";
 export function DialogCloseButton({ link }) {
   function CopyToClipboard(data) {
     navigator.clipboard.writeText(data);
-    console.log(data);
   }
   return (
     <Dialog>

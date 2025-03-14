@@ -27,15 +27,11 @@ function PollOption({
   //   setCheckValue(choosedOption == option[index]);
   // }, [choosedOption]);
   useEffect(()=>{
-    console.log("changing progress")
     let a = votes[index]/totalVotes;
-    console.log(option[index], votes[index])
     setProgress(Math.round(a*100))
   },[totalVotes,updateProgress])
   useEffect(()=>{
-    console.log("changing progress")
     let a = votes[index]/totalVotes;
-    console.log(option[index], votes[index])
     setProgress(Math.round(a*100))
   },[updateProgress])
   // function HandleCheckedChange() {

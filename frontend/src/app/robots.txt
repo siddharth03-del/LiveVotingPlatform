@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+Disallow: /service/mypolls
+Disallow : /service/myvotes
+Sitemap: https://crazypolls.com/sitemap.xml

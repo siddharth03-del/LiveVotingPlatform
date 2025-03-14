@@ -10,7 +10,6 @@ export function Castvote(id, vote, socketObject, userId){
             "userId" : userId
         }
         socketObject.emit('cast_vote', data)
-        console.log("vote has been casted")
     }catch(error){
         console.log(error)
     }

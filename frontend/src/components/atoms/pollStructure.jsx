@@ -16,15 +16,11 @@ function PollStrucutre({ poll }) {
   const [updateProgress, setProgressUpdate] = useState(0);
   useEffect(() => {
     socketObject?.on("poll_update", (data) => {
-      console.log("Poll update", data);
-      console.log(data.message.Poll._id)
       if (data?.message?.Poll?._id == poll._id) {
         setPoll(data.message.Poll);
         const sum = data.message.Poll.votes.reduce(
           (accumlator, currentValue) => accumlator + currentValue
         );
-        console.log("changed total votes");
-        console.log(sum);
         setTotalVotes(sum);
         setProgressUpdate((prev)=> prev + 1);
       }
@@ -36,7 +32,6 @@ function PollStrucutre({ poll }) {
     retry : 5
   });
   useEffect(() => {
-    console.log(voteinfo);
     if (voteinfo) {
       setChoosedOption(voteinfo?.vote);
     } else {

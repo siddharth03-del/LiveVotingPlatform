@@ -3,10 +3,8 @@ import axios_instance from "@/axios/axios";
 export async function fetchUserId(){
     try{
         let uuid = localStorage.getItem('userId');
-        console.log(uuid)
         if(!uuid){
             const response = await axios_instance.get('/user/uuid')
-            console.log(response.data)
             localStorage.setItem('userId', response.data.userId);
             uuid = response.data.userId;
         }

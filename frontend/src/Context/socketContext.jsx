@@ -8,7 +8,7 @@ export const SocketContextProvider = ({children})=>{
     let socket;
     const [socketObject, setSocketObject] = useState(null)
     useEffect(()=>{
-        socket = io("https://livevotingplatform.onrender.com");
+        socket = io("http://192.168.100.111:5000");
         // socket?.on("connect", ()=>{
         //     setSocketObject(socket)
         //     console.log("Connected to socket")
@@ -17,7 +17,6 @@ export const SocketContextProvider = ({children})=>{
     useEffect(()=>{
         socket && socket.on("connect", ()=>{
             setSocketObject(socket)
-            console.log("Connected to socket")
         })
     },[socket])
     return(

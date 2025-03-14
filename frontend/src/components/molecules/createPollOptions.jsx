@@ -7,13 +7,11 @@ import { useContext, useEffect } from "react";
 export default function CreatePollOptions() {
   const { options, setOptions } = useContext(createPollContext);
   function HandleInputChange(value, index){
-    console.log("handle input change");
 
     setOptions((prevOptions) => {
         let newOptions = [...prevOptions];
         
         if(index === newOptions.length - 1){
-            console.log("added new option");
             newOptions.push('');
         }
         
@@ -30,7 +28,6 @@ export default function CreatePollOptions() {
 }
 
   useEffect(()=>{
-    console.log(options)
   },[options])
   return (
     <div>
