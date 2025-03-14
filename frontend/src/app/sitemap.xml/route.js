@@ -3,7 +3,7 @@ export async function GET() {
 
     try {
         // Fetch all public polls from your backend API
-        const response = await fetch("http://192.168.100.111:5000/api/poll/all");
+        const response = await fetch("https://livevotingplatform.onrender.com/api/poll/all");
 
         if (!response.ok) {
             throw new Error("Failed to fetch polls");
