@@ -19,7 +19,7 @@ export default async function Page({ params }) {
         const urlparams = new URLSearchParams({
             "poll_name" : params.pollname
         })
-        const res = await fetch(`http://192.168.100.111:5000/api/poll/getone?${urlparams}`,{
+        const res = await fetch(`https://livevotingplatform.onrender.com/api/poll/getone?${urlparams}`,{
             method: 'GET',
             headers : {
                 'Content-Type' : 'application/json'
