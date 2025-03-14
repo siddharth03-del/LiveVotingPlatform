@@ -80,7 +80,7 @@ function PollStrucutre({ poll }) {
       <div className="flex flex-col justify-center ml-1">
         <div className="w-fit h-fit">
           <DialogCloseButton
-            link={`https://live-voting-platform.vercel.app//service/poll/${poll.name}`}
+            link={`https://crazypolls.com/service/poll/${poll.name}`}
           />
         </div>
       </div>
