@@ -74,6 +74,8 @@ function PollOption({
     <div className="flex flex-row py-1">
       <div className="mt-[2px]">
         <Checkbox
+          aria-label={option[index]}
+          aria-labelledby={option[index]}
           onCheckedChange={() => {
             HandleCheckedChange();
           }}

@@ -39,7 +39,7 @@ export function DialogCloseButton({ link }) {
             </TooltipContent>
           </Tooltip>
         </TooltipProvider> */}
-        <Button variant="outline">
+        <Button variant="outline" aria-label="share" aria-labelledby="share">
           <Share2Icon />
         </Button>
       </DialogTrigger>

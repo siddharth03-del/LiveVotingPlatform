@@ -11,7 +11,10 @@ export const metadata = {
     "Curious about your past votes? View all the polls you’ve voted on, track vote counts, and stay engaged with trending discussions!",
     icons : {
       icon : './site_logo.png'
-    }
+    },
+  alternates : {
+    canonical : "https://www.crazypolls.com"
+  }
 };
 export default function Home() {
   // const router = useRouter();

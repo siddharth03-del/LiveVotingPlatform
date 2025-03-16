@@ -12,7 +12,7 @@ export async function GET() {
         // Generate URLs dynamically for each poll
         const urls = polls.data.map(poll => `
             <url>
-                <loc>${baseUrl}/poll/${encodeURIComponent(poll.name.replace(/\s+/g, "-"))}</loc>
+                <loc>${baseUrl}/service/poll/${encodeURIComponent(poll.name.replace(/\s+/g, "-"))}</loc>
                 <lastmod>${new Date().toISOString()}</lastmod>
                 <priority>0.8</priority>
             </url>

@@ -7,6 +7,9 @@ export async function generateMetadata({ params }) {
     return {
         title: `${pollname} - Vote & Discuss | CrazyPolls`,
         description: `Cast your vote on '${pollname}' and see what others think! Join CrazyPolls today.`,
+        alternates : {
+            canonical : `https://www.crazypolls.com/service/poll/${params.pollname}`
+        }
     };
 }
 
