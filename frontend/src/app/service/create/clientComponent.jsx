@@ -9,6 +9,9 @@ import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import MenuContext from "@/Context/menuContext";
+import { useEffect } from "react";
+import UserContext from "@/Context/userContext";
+import { fetchUserId } from "@/Services/user";
 export default function ClientComponent() {
   const {
     color,
@@ -27,10 +30,18 @@ export default function ClientComponent() {
     setPublicPoll
   } = useContext(createPollContext);
   const {setLevel1, setLevel2} = useContext(MenuContext);
+  const {setUserId} = useContext(UserContext)
   useEffect(()=>{
     setLevel1("Poll");
     setLevel2("Create a poll");
   },[])
+  useEffect(()=>{
+          async function FetchUserIdHelper(){
+              const uuid = await fetchUserId();
+              setUserId(uuid);
+          }
+          FetchUserIdHelper()
+      },[])
   return (
     <>
     <form
