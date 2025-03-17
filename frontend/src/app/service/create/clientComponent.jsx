@@ -3,13 +3,12 @@
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import CreatePollOptions from "@/components/molecules/createPollOptions";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect} from "react";
 import createPollContext from "@/Context/createPollContext";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import MenuContext from "@/Context/menuContext";
-import { useEffect } from "react";
 import UserContext from "@/Context/userContext";
 import { fetchUserId } from "@/Services/user";
 export default function ClientComponent() {
